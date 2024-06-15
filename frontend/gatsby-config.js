@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Site",
-    description: "A new Gatsby site.",
+    title: "Stringlate",
+    description: "Stringlate is a tool to help you manage your translations",
     author: "@gatsbyjs",
   },
   plugins: ["gatsby-plugin-typescript"],

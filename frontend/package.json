@@ -1,12 +1,21 @@
 {
-  "name": "frontend",
+  "name": "stringlate-frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Frontend for StringLate",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "gatsby": "^5.13.6",
+    "gatsby-plugin-typescript": "^5.13.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.4.5"
+  }
 }

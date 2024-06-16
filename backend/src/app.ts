@@ -7,6 +7,4 @@ app.get("/", (req, res) => {
   res.send("Hello from backends!");
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+export default app;

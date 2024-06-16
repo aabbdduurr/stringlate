@@ -3,9 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "install-be": "cd backend && npm install",
+    "install-fe": "cd frontend && npm install",
+    "install": "npm run install-be && npm run install-fe",
+    "build-be": "cd backend && npm run build",
+    "build-fe": "cd frontend && npm run build",
+    "build": "npm run build-be && npm run build-fe",
+    "start-be": "cd backend && npm start",
+    "start-fe": "cd frontend && npm start",
+    "start": "concurrently --kill-others --prefix \"[{name}]\" --names \"BACKEND,FRONTEND\" \"npm run start-be\" \"npm run start-fe\"",
+    "test-be": "cd backend && npm test",
+    "test-fe": "cd frontend && npm test",
+    "test": "npm run test-be && npm run test-fe"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "concurrently": "^8.2.2",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.4"
+  }
 }

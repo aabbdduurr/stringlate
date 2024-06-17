@@ -1,11 +1,17 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "jsx": "preserve",
     "noEmit": true,
+    "noImplicitAny": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2019",
     "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": ["src/**/*"],

@@ -1,15 +1,16 @@
 import mongoose from "mongoose";
 import { AppConfigType } from "../types/configTypes";
+import { DBS, ENVS, LANGUAGES, THEMES } from "../constants/configConstants";
 
 interface AppConfigModel extends AppConfigType, mongoose.Document {}
 
 const appConfigSchema = new mongoose.Schema({
-  theme: { type: String, required: true, default: "light" },
-  language: { type: String, required: true, default: "en" },
+  theme: { type: String, required: true, enum: THEMES },
+  language: { type: String, required: true, enum: LANGUAGES },
   environments: [
     {
-      env: { type: String, required: true },
-      dbName: { type: String, required: true },
+      env: { type: String, required: true, enum: ENVS },
+      dbName: { type: String, required: true, enum: DBS },
     },
   ],
 });

@@ -1,6 +1,6 @@
 import express from "express";
 import configRoutes from "./routes/configRoutes";
-import connectDB from "../utils/databaseUtils";
+import connectDB from "../utils/dbUtils";
 import { PORT } from "../constants/appConstants";
 import errorHandler from "../middlewares/errorHandler";
 
@@ -15,6 +15,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

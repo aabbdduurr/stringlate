@@ -9,11 +9,15 @@ export const getUserConfig = async (
 
 export const updateUserConfig = async (
   userId: string,
-  config: UserConfigType["config"]
+  config: UserConfigType
 ): Promise<UserConfigType> => {
   return await UserConfig.findOneAndUpdate(
     { userId },
     { config },
-    { new: true, upsert: true }
+    {
+      new: true,
+      upsert: true,
+      runValidators: true,
+    }
   );
 };

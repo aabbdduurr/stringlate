@@ -1,13 +1,15 @@
 import express from "express";
 import * as appConfigController from "../../controllers/appConfigController";
 import * as userConfigController from "../../controllers/userConfigController";
+import { ROUTES } from "../../constants/appConstants";
 
-const router = express.Router();
+const publicRouter = express.Router();
+const protectedRouter = express.Router();
 
-router.get("/app", appConfigController.getAppConfig);
-router.put("/app", appConfigController.updateAppConfig);
+publicRouter.get(ROUTES.CONFIG.APP, appConfigController.getAppConfig);
 
-router.get("/user/:userId", userConfigController.getUserConfig);
-router.put("/user/:userId", userConfigController.updateUserConfig);
+protectedRouter.put(ROUTES.CONFIG.APP, appConfigController.updateAppConfig);
+protectedRouter.get(ROUTES.CONFIG.USER, userConfigController.getUserConfig);
+protectedRouter.put(ROUTES.CONFIG.USER, userConfigController.updateUserConfig);
 
-export default router;
+export { publicRouter, protectedRouter };

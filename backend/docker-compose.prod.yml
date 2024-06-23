@@ -9,6 +9,13 @@ services:
       - "3001:3000"
     environment:
       NODE_ENV: production
+      PROTOCOL: http
+      DOMAIN: localhost
+      PORT: 3000
+      DISPLAY_PORT: 3001
+      JWT_SECRET: jwt_secret
+      JWT_EXPIRY: 1d
+      SESSION_SECRET: session_secret
       CONFIG_DB_HOST: config_mongo
       CONFIG_DB_PORT: 27017
       CONFIG_DB_NAME: db

@@ -1,4 +1,4 @@
-import { initialAppConfig } from "../config/dbConfig";
+import { initialAppConfig } from "../config/initialConfig";
 import AppConfig from "../models/appConfigModel";
 import { AppConfigType } from "../types/configTypes";
 

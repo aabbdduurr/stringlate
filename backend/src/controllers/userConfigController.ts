@@ -6,7 +6,7 @@ export const getUserConfig = async (
   res: Response
 ): Promise<void> => {
   try {
-    const userId = req.params.userId;
+    const userId = req.user?.userId;
     const config = await userConfigService.getUserConfig(userId);
     if (!config) {
       res.status(404).send("User config not found");
@@ -23,7 +23,7 @@ export const updateUserConfig = async (
   res: Response
 ): Promise<void> => {
   try {
-    const userId = req.params.userId;
+    const userId = req.user?.userId;
     const newConfig = req.body;
     const updatedConfig = await userConfigService.updateUserConfig(
       userId,

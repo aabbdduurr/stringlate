@@ -11,7 +11,10 @@ import {
   SESSION_SECRET,
 } from "../constants/appConstants";
 import errorHandler from "../middlewares/errorHandler";
-import authRouter from "./routes/authRoutes";
+import {
+  publicRouter as authPublicRouter,
+  protectedRouter as authProtectedRouter,
+} from "./routes/authRoutes";
 import {
   publicRouter as configPublicRouter,
   protectedRouter as configProtectedRouter,
@@ -29,9 +32,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(ROUTES.AUTH._, authRouter);
+app.use(ROUTES.AUTH._, authPublicRouter);
 app.use(ROUTES.CONFIG._, configPublicRouter);
 
+app.use(ROUTES.AUTH._, authHandler, authProtectedRouter);
 app.use(ROUTES.CONFIG._, authHandler, configProtectedRouter);
 
 app.use(errorHandler);

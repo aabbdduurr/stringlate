@@ -4,6 +4,11 @@ import passport from "passport";
 
 export const register = async (req: Request, res: Response) => {
   try {
+    const isAdministrator = req.user?.isAdministrator === true;
+    if (!isAdministrator) {
+      return res.status(403).send("Unauthorized to register new users");
+    }
+
     const { name, email, password } = req.body;
     const user = await authService.registerUser(name, email, password);
     const token = authService.issueJwtToken(user);

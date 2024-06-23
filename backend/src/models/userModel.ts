@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { UserType } from "../types/userTypes";
 import { ROLES } from "../constants/userConstants";
-import bcrypt from "bcryptjs";
 
 interface UserModel extends UserType, mongoose.Document {}
 
@@ -23,23 +22,9 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-userSchema.pre<UserModel>("save", async function (next) {
-  if (this.isModified("password")) {
-    try {
-      this.password = await bcrypt.hash(this.password!, 10);
-      next();
-    } catch (err: any) {
-      next(err);
-    }
-  } else {
-    next();
-  }
-});
-
 userSchema.methods.toJSON = function () {
   const obj = this.toObject();
   return {
-    isAdministrator: obj.isAdministrator,
     name: obj.name,
     projects: obj.projects,
   };

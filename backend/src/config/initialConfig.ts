@@ -2,12 +2,12 @@ import { AppConfigType } from "../types/configTypes";
 import { UserType } from "../types/userTypes";
 
 export const initialUser: UserType = {
-  userId: "f0333d5e-ffd4-4eb5-8319-3cf0527a7fea",
+  userId: "fb3e3475-0ff6-49da-86f5-d6e6567744e6",
   isRoot: true,
   isAdministrator: true,
-  name: "Abdur Rahman",
-  email: "email@abdur.co",
-  password: "password",
+  name: "Example One",
+  email: "example1@domain.com",
+  password: "password1",
 };
 
 export const initialAppConfig: AppConfigType = {

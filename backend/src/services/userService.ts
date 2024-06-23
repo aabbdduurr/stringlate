@@ -6,10 +6,7 @@ export const createRootUser = async () => {
   try {
     const existingUser = await User.findOne({ email: initialUser.email });
     if (!existingUser) {
-      if (typeof initialUser.password !== "string") {
-        throw new Error("Invalid password format");
-      }
-      const hashedPassword = await bcrypt.hash(initialUser.password, 10);
+      const hashedPassword = await bcrypt.hash(initialUser.password || "", 10);
       const user = new User({
         ...initialUser,
         password: hashedPassword,

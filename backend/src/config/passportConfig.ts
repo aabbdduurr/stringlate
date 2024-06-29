@@ -6,7 +6,7 @@ import { Strategy as FacebookStrategy } from "passport-facebook";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import User from "../models/userModel";
-import { issueJwtToken } from "../services/authService";
+import { issueJwtTokens } from "../services/authService";
 import {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
@@ -54,8 +54,8 @@ const handleOAuthCallback = async (
 ) => {
   try {
     const user = await createOrFindUser(profile, provider);
-    const jwtToken = issueJwtToken(user);
-    return done(null, { user, token: jwtToken });
+    const { token, refreshToken: newRefreshToken } = issueJwtTokens(user);
+    return done(null, { user, token, refreshToken: newRefreshToken });
   } catch (err) {
     return done(err, null);
   }
@@ -74,8 +74,8 @@ passport.use(
         if (!isMatch) {
           return done(null, false, { message: "Incorrect password." });
         }
-        const token = issueJwtToken(user);
-        return done(null, { user, token });
+        const { token, refreshToken } = issueJwtTokens(user);
+        return done(null, { user, token, refreshToken });
       } catch (err) {
         return done(err);
       }

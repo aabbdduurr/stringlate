@@ -14,6 +14,7 @@ export const ROUTES = {
     _: "/auth",
     REGISTER: "/register",
     LOGIN: "/login",
+    REFRESH_TOKEN: "/refresh-token",
     LOGOUT: "/logout",
     GOOGLE: {
       _: "/google",
@@ -37,7 +38,10 @@ const CONFIG_DB_NAME = process.env.CONFIG_DB_NAME || "db";
 export const CONFIG_DB_URI = `mongodb://${CONGIN_DB_HOST}:${CONFIG_DB_PORT}/${CONFIG_DB_NAME}`;
 
 export const JWT_SECRET = process.env.JWT_SECRET || "jwt_secret";
-export const JWT_EXPIRY = process.env.JWT_EXPIRY || "1d";
+export const JWT_EXPIRY = process.env.JWT_EXPIRY || "1h";
+export const REFRESH_TOKEN_SECRET =
+  process.env.REFRESH_TOKEN_SECRET || "refresh_token_secret";
+export const REFRESH_TOKEN_EXPIRY = process.env.REFRESH_TOKEN_EXPIRY || "7d";
 export const SESSION_SECRET = process.env.SESSION_SECRET || "session_secret";
 
 export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "";

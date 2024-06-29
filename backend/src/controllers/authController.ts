@@ -10,9 +10,12 @@ export const register = async (req: Request, res: Response) => {
     }
 
     const { name, email, password } = req.body;
-    const user = await authService.registerUser(name, email, password);
-    const token = authService.issueJwtToken(user);
-    res.status(201).json({ user, token });
+    const { user, token, refreshToken } = await authService.registerUser(
+      name,
+      email,
+      password
+    );
+    res.status(201).json({ user, token, refreshToken });
   } catch (error: any) {
     res.status(400).send(`Error registering user: ${error.message}`);
   }
@@ -28,6 +31,21 @@ export const login = (req: Request, res: Response, next: NextFunction) => {
     }
     res.status(200).json(authData);
   })(req, res, next);
+};
+
+export const refreshToken = async (req: Request, res: Response) => {
+  const { token, refreshToken } = req.body;
+  if (!token || !refreshToken) {
+    return res.status(401).send("Tokens required");
+  }
+
+  try {
+    const { accessToken, refreshToken: newRefreshToken } =
+      await authService.refreshToken(token, refreshToken);
+    res.status(200).json({ token: accessToken, refreshToken: newRefreshToken });
+  } catch (error: any) {
+    res.status(400).send("Invalid refresh token");
+  }
 };
 
 export const logout = (req: Request, res: Response, next: NextFunction) => {

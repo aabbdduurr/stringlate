@@ -17,11 +17,13 @@ export const getAppConfig = async (
   }
 };
 
-export const updateAppConfig = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const updateAppConfig = async (req: Request, res: Response) => {
   try {
+    const isAdministrator = req.user?.isAdministrator === true;
+    if (!isAdministrator) {
+      return res.status(403).send("Unauthorized to update app config");
+    }
+
     const newConfig = req.body;
     const updatedConfig = await appConfigService.updateAppConfig(newConfig);
     res.status(200).json(updatedConfig);

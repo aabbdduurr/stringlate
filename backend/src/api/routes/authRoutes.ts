@@ -6,6 +6,7 @@ const publicRouter = express.Router();
 const protectedRouter = express.Router();
 
 publicRouter.post(ROUTES.AUTH.LOGIN, authController.login);
+publicRouter.post(ROUTES.AUTH.REFRESH_TOKEN, authController.refreshToken);
 
 publicRouter.get(ROUTES.AUTH.GOOGLE._, authController.googleAuth);
 publicRouter.get(ROUTES.AUTH.GOOGLE.CALLBACK, authController.googleCallback);
